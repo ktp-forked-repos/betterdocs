@@ -37,6 +37,17 @@ task 'lint' do
   exec('rake lint:javascript')
 end
 
-task 'assets:precompile' do
-  exec('bundle exec jekyll build')
+desc 'Build development'
+task 'build:development' do
+  exec('jekyll build --config _config.yml')
+end
+
+desc 'Build staging'
+task 'build:staging' do
+  exec('JEKYLL_ENV=staging jekyll build --config _config.staging.yml')
+end
+
+desc 'Build production'
+task 'build:production' do
+  exec('JEKYLL_ENV=production jekyll build --config _config.production.yml')
 end
